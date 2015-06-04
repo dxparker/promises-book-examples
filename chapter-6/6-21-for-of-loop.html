@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-21. Using an implicit iterator created by for&hellip;of</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var animals = [
+	{ type: 'bird', legs: 2 },
+	{ type: 'cat', legs: 4 },
+	{ type: 'dog', legs: 4 },
+	{ type: 'spider', legs: 8 }
+];
+
+// Better substitute for iterator and loop
+for (animal of match(animals, 'legs', 4)) {
+	console.log(animal.type);
+}
+
+// Repeated from previous example
+function* match(objects, propname, value) {
+	var i;
+	var obj;
+	for (i = 0; i < objects.length; i++) {
+		obj = objects[i];
+		if (obj[propname] === value) yield obj;
+	};
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-21. Using an implicit iterator created by for&hellip;of</h1>
+
+<pre>
+<code class="language-javascript">
+// Better substitute for iterator and loop
+for (animal of match(animals, 'legs', 4)) {
+	console.log(animal.type);
+}
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-9. Concise pipeline with arrow functions</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function processImage(image) {
+	return Promise.resolve(image)
+		.then(image => scaleToFit(300, 450, image))
+		.then(image => watermark('The Real Estate Company', image))
+		.then(image => grayscale(image))
+		.then(({src}) => console.log('Processing completed for ' + src));
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-9. Concise pipeline with arrow functions</h1>
+
+<pre>
+<code class="language-javascript">
+function processImage(image) {
+	return Promise.resolve(image)
+		.then(image => scaleToFit(300, 450, image))
+		.then(image => watermark('The Real Estate Company', image))
+		.then(image => grayscale(image))
+		.then(({src}) => console.log('Processing completed for ' + src));
+}
+</code>
+</pre>
+
+</body>
+</html>

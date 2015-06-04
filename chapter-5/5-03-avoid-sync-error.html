@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-3. Functions that return promises should not throw errors</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function badfunc(url) {
+	var image;
+	image.src = url; // Error: image is undefined
+	return new Promise(function (resolve, reject) {
+		image.onload = resolve;
+		image.onerror = reject;
+	});
+}
+
+function goodfunc(url) {
+	return new Promise(function (resolve, reject) {
+		var image;
+		image.src = url; // Error: image is undefined
+		image.onload = resolve;
+		image.onload = reject;
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-3. Functions that return promises should not throw errors</h1>
+
+<pre>
+<code class="language-javascript">
+function badfunc(url) {
+	var image;
+	image.src = url; // Error: image is undefined
+	return new Promise(function (resolve, reject) {
+		image.onload = resolve;
+		image.onerror = reject;
+	});
+}
+
+function goodfunc(url) {
+	return new Promise(function (resolve, reject) {
+		var image;
+		image.src = url; // Error: image is undefined
+		image.onload = resolve;
+		image.onload = reject;
+	});
+}
+</code>
+</pre>
+
+</body>
+</html>

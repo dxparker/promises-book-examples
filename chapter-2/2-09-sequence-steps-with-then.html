@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-9. Using then to sequence multiple steps</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+step1().then(
+	function step2(resultFromStep1) {
+		// ...
+	}
+).then(
+	function step3(resultFromStep2) {
+		// ...
+	}
+).then(
+	function step4(resultFromStep3) {
+		// ...
+	}
+);
+
+// Additional code so example can run
+function step1() {
+	return Promise.resolve();
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-9. Using then to sequence multiple steps</h1>
+
+<pre>
+<code class="language-javascript">
+step1().then(
+	function step2(resultFromStep1) {
+		// ...
+	}
+).then(
+	function step3(resultFromStep2) {
+		// ...
+	}
+).then(
+	function step4(resultFromStep3) {
+		// ...
+	}
+);
+</code>
+</pre>
+
+</body>
+</html>

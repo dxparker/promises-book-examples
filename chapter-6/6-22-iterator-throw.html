@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-22. Throwing errors with the iterator</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function* languages() {
+	try {
+		yield 'English';
+		yield 'French';
+		yield 'German';
+		yield 'Spanish';
+	} catch (error) {
+		console.log(error.message);
+	}
+}
+
+var greetings = {
+	English: 'Hello',
+	French: 'Bonjour',
+	Spanish: 'Hola'
+};
+
+var iterator = languages();
+var result;
+var word;
+
+while ((result = iterator.next()).done !== true) {
+	word = greetings[result.value];
+	if (word) console.log(word);
+	else iterator.throw(Error('Missing translation for ' + result.value));
+}
+
+// Console output:
+// Hello
+// Bonjour
+// Missing translation for German
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-22. Throwing errors with the iterator</h1>
+
+<pre>
+<code class="language-javascript">
+function* languages() {
+	try {
+		yield 'English';
+		yield 'French';
+		yield 'German';
+		yield 'Spanish';
+	} catch (error) {
+		console.log(error.message);
+	}
+}
+
+var greetings = {
+	English: 'Hello',
+	French: 'Bonjour',
+	Spanish: 'Hola'
+};
+
+var iterator = languages();
+var result;
+var word;
+
+while ((result = iterator.next()).done !== true) {
+	word = greetings[result.value];
+	if (word) console.log(word);
+	else iterator.throw(Error('Missing translation for ' + result.value));
+}
+
+// Console output:
+// Hello
+// Bonjour
+// Missing translation for German
+</code>
+</pre>
+
+</body>
+</html>

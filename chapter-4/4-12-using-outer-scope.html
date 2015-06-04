@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-12. Exposing a fulfillment value using the enclosing scope</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var connection; // Declare in outer scope for use in multiple functions
+
+getConnection().then(function (con) {
+	connection = con;
+	return connection.insert('student', {name: 'Bobby'});
+}).then(function () {
+	return connection.count('students');
+}).then(function (count) {
+	console.log('Number of students: ' + count);
+	return connection.close();
+});
+
+function getConnection() {
+	return Promise.resolve({
+		insert: function () {
+			return Promise.resolve();
+		},
+		count: function () {
+			return Promise.resolve(25);
+		},
+		close: function () {
+			return Promise.resolve();
+		}
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-12. Exposing a fulfillment value using the enclosing scope</h1>
+
+<pre>
+<code class="language-javascript">
+var connection; // Declare in outer scope for use in multiple functions
+
+getConnection().then(function (con) {
+	connection = con;
+	return connection.insert('student', {name: 'Bobby'});
+}).then(function () {
+	return connection.count('students');
+}).then(function (count) {
+	console.log('Number of students: ' + count);
+	return connection.close();
+});
+</code>
+</pre>
+
+</body>
+</html>

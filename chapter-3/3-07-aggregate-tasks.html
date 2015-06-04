@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-7. Consolidating the outcomes of parallel tasks with Promise.all()</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var accounts = ['Checking Account', 'Travel Rewards Card', 'Big Box Retail Card'];
+
+var requests = accounts.map(function (account) {
+	return ajax(/*someurl for account*/);
+});
+
+// Update status message once all requests are fulfilled
+Promise.all(requests).then(function (balances) {
+	console.log('All ' + balances.length + ' balances are up to date');
+}).catch(function (error) {
+	console.log('An error occurred while retrieving balance information');
+	console.log(error);
+});
+
+// Additional code so example can run
+function ajax(url) {
+	ajax.balances = ajax.balances || [384, 509, 0];
+	return Promise.resolve(ajax.balances.shift());
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-7. Consolidating the outcomes of parallel tasks with Promise.all()</h1>
+
+<pre>
+<code class="language-javascript">
+var requests = accounts.map(function (account) {
+	return ajax(/*someurl for account*/);
+});
+
+// Update status message once all requests are fulfilled
+Promise.all(requests).then(function (balances) {
+	console.log('All ' + balances.length + ' balances are up to date');
+}).catch(function (error) {
+	console.log('An error occurred while retrieving balance information');
+	console.log(error);
+});
+
+// Console output:
+// All 3 balances are up to date
+</code>
+</pre>
+
+</body>
+</html>

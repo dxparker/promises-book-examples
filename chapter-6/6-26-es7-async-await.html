@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-26. Using async and await as proposed in ES7</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+async function () {
+	try {
+		var img = await loadImage('thesis_defense.png');
+		console.log('received image');
+	} catch (err) {
+		console.log('caught in rejection handler');
+		console.log(err);
+	}
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-26. Using async and await as proposed in ES7</h1>
+
+<pre>
+<code class="language-javascript">
+async function () {
+	try {
+		var img = await loadImage('thesis_defense.png');
+		console.log('received image');
+	} catch (err) {
+		console.log('caught in rejection handler');
+		console.log(err);
+	}
+});
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-13. Passing on a value using promise.return()</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+var Bluebird = Promise.noConflict();
+
+getConnection().then(function (connection) {
+	return connection
+		.insert('student', {name: 'Bobby'})
+		.return(connection);
+}).then(function (connection) { 
+	// ...
+});
+
+function getConnection() {
+	return Bluebird.resolve({
+		insert: function () {
+			return Bluebird.resolve();
+		},
+		count: function () {
+			return Bluebird.resolve(25);
+		},
+		close: function () {
+			return Bluebird.resolve();
+		}
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-13. Passing on a value using promise.return()</h1>
+
+<pre>
+<code class="language-javascript">
+getConnection().then(function (connection) {
+	return connection
+		.insert('student', {name: 'Bobby'})
+		.return(connection);
+}).then(function (connection) { // ...
+</code>
+</pre>
+
+</body>
+</html>

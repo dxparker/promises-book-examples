@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-8. Running code after multiple operations have finished, regardless of their
+outcome</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var accounts = ['Checking Account', 'Travel Rewards Card', 'Big Box Retail Card'];
+
+var requests = accounts.map(function (account) {
+	return ajax(/*someurl for account*/);
+});
+
+function settled(promises) {
+	var alwaysFulfilled = promises.map(function (p) {
+		return p.then(
+			function onFulfilled(value) {
+				return { state: 'fulfilled', value: value };
+			},
+			function onRejected(reason) {
+				return { state: 'rejected', reason: reason };
+			}
+		);
+	});
+	return Promise.all(alwaysFulfilled);
+}
+
+// Update status message once all requests finish
+settled(requests).then(function (outcomes) {
+	var count = 0;
+	outcomes.forEach(function (outcome) {
+		if (outcome.state == 'fulfilled') count++;
+	});
+	console.log(count + ' out of ' + outcomes.length + ' balances were updated');
+});
+
+// Additional code so example can run
+function ajax(url) {
+	ajax.balances = ajax.balances || [384, 509, 0];
+	return Promise.resolve(ajax.balances.shift());
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-8. Running code after multiple operations have finished, regardless of their
+outcome</h1>
+
+<pre>
+<code class="language-javascript">
+function settled(promises) {
+	var alwaysFulfilled = promises.map(function (p) {
+		return p.then(
+			function onFulfilled(value) {
+				return { state: 'fulfilled', value: value };
+			},
+			function onRejected(reason) {
+				return { state: 'rejected', reason: reason };
+			}
+		);
+	});
+	return Promise.all(alwaysFulfilled);
+}
+
+// Update status message once all requests finish
+settled(requests).then(function (outcomes) {
+	var count = 0;
+	outcomes.forEach(function (outcome) {
+		if (outcome.state == 'fulfilled') count++;
+	});
+	console.log(count + ' out of ' + outcomes.length + ' balances were updated');
+});
+
+// Console output (varies based on requests):
+// 3 out of 3 balances were updated
+</code>
+</pre>
+
+</body>
+</html>

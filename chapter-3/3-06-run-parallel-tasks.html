@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-6. Running asynchronous tasks in parallel</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Define each account
+var accounts = ['Checking Account', 'Travel Rewards Card', 'Big Box Retail Card'];
+
+console.log('Updating balance information...');
+accounts.forEach(function (account) {
+	// ajax() returns a promise eventually fulfilled by the account balance
+	ajax(/*someurl for account*/).then(function (balance) {
+		console.log(account + ' Balance: ' + balance);
+	});
+});
+
+// Additional code so example can run
+function ajax(url) {
+	ajax.balances = ajax.balances || [384, 509, 0];
+	return Promise.resolve(ajax.balances.shift());
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-6. Running asynchronous tasks in parallel</h1>
+
+<pre>
+<code class="language-javascript">
+// Define each account
+var accounts = ['Checking Account', 'Travel Rewards Card', 'Big Box Retail Card'];
+
+console.log('Updating balance information...');
+accounts.forEach(function (account) {
+	// ajax() returns a promise eventually fulfilled by the account balance
+	ajax(/*someurl for account*/).then(function (balance) {
+		console.log(account + ' Balance: ' + balance);
+	});
+});
+
+// Console output:
+// Updating balance information...
+// Checking Account Balance: 384
+// Travel Rewards Card Balance: 509
+// Big Box Retail Card Balance: 0
+</code>
+</pre>
+
+</body>
+</html>

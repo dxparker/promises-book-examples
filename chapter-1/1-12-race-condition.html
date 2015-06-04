@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-12. Race condition</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var async = true;
+var xhr = new XMLHttpRequest();
+xhr.open('get', 'data.json', async);
+xhr.send();
+
+setTimeout(function delayed() { // Creates race condition!
+	function listener() {
+		console.log('greetings from listener');
+	}
+
+	xhr.addEventListener('load', listener);
+	xhr.addEventListener('error', listener);
+}, 3000);
+</script>
+
+</head>
+<body>
+
+<h1>Example 1-12. Race condition</h1>
+
+<pre>
+<code class="language-javascript">
+var async = true;
+var xhr = new XMLHttpRequest();
+xhr.open('get', 'data.json', async);
+xhr.send();
+
+setTimeout(function delayed() { // Creates race condition!
+	function listener() {
+		console.log('greetings from listener');
+	}
+
+	xhr.addEventListener('load', listener);
+	xhr.addEventListener('error', listener);
+}, 3000);
+</code>
+</pre>
+
+</body>
+</html>

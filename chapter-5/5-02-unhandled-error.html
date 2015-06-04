@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-2. Unhandled error rejects a promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var rejectedPromise = new Promise(function (resolve, reject) {
+	throw new Error('Arghhhh!'); // Implicit rejection
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-2. Unhandled error rejects a promise</h1>
+
+<pre>
+<code class="language-javascript">
+var rejectedPromise = new Promise(function (resolve, reject) {
+	throw new Error('Arghhhh!'); // Implicit rejection
+});
+</code>
+</pre>
+
+</body>
+</html>

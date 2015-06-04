@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-10. Passing values in a sequence of steps</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+Promise.resolve('ta-da!').then(
+	function step2(result) {
+		console.log('Step 2 received ' + result);
+		return 'Greetings from step 2'; // Explicit return value
+	}
+).then(
+	function step3(result) {
+		console.log('Step 3 received ' + result); // No explicit return value
+	}
+).then(
+	function step4(result) {
+		console.log('Step 4 received ' + result);
+		return Promise.resolve('fulfilled value'); // Return a promise
+	}
+).then(
+	function step5(result) {
+		console.log('Step 5 received ' + result);
+	}
+);
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-10. Passing values in a sequence of steps</h1>
+
+<pre>
+<code class="language-javascript">
+Promise.resolve('ta-da!').then(
+	function step2(result) {
+		console.log('Step 2 received ' + result);
+		return 'Greetings from step 2'; // Explicit return value
+	}
+).then(
+	function step3(result) {
+		console.log('Step 3 received ' + result); // No explicit return value
+	}
+).then(
+	function step4(result) {
+		console.log('Step 4 received ' + result);
+		return Promise.resolve('fulfilled value'); // Return a promise
+	}
+).then(
+	function step5(result) {
+		console.log('Step 5 received ' + result);
+	}
+);
+
+// Console output:
+// Step 2 received ta-da!
+// Step 3 received Greetings from step 2
+// Step 4 received undefined
+// Step 5 received fulfilled value
+</code>
+</pre>
+
+</body>
+</html>

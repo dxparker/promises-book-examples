@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-11. Simple array.reduce to sum numbers</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var numbers = [2, 4, 6];
+var sum = numbers.reduce(function (sum, number) {
+	return sum + number;
+}, 0);
+console.log(sum);
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-11. Simple array.reduce to sum numbers</h1>
+
+<pre>
+<code class="language-javascript">
+var numbers = [2, 4, 6];
+var sum = numbers.reduce(function (sum, number) {
+	return sum + number;
+}, 0);
+console.log(sum);
+
+// Console output:
+// 12
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-4. Creating and resolving a promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function loadImage(url) {
+	var promise = new Promise(
+		function resolver(resolve, reject) {
+			var img = new Image();
+			img.src = url;
+			
+			img.onload = function () {
+				resolve(img);
+			};
+
+			img.onerror = function (e) {
+				reject(e);
+			};
+		}
+	);
+	return promise;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-4. Creating and resolving a promise</h1>
+
+<pre>
+<code class="language-javascript">
+function loadImage(url) {
+	var promise = new Promise(
+		function resolver(resolve, reject) {
+			var img = new Image();
+			img.src = url;
+			
+			img.onload = function () {
+				resolve(img);
+			};
+
+			img.onerror = function (e) {
+				reject(e);
+			};
+		}
+	);
+	return promise;
+}
+</code>
+</pre>
+
+</body>
+</html>

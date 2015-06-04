@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-7. Convenience functions for resolve and reject</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Equivalent ways to create a resolved promise
+new Promise(function (resolve, reject) {
+	resolve('the long way')
+});
+Promise.resolve('the short way');
+
+// Equivalent ways to create a rejected promise
+new Promise(function (resolve, reject) {
+	reject('long rejection')
+});
+Promise.reject('short rejection');
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-7. Convenience functions for resolve and reject</h1>
+
+<pre>
+<code class="language-javascript">
+// Equivalent ways to create a resolved promise
+new Promise(function (resolve, reject) {
+	resolve('the long way')
+});
+Promise.resolve('the short way');
+
+// Equivalent ways to create a rejected promise
+new Promise(function (resolve, reject) {
+	reject('long rejection')
+});
+Promise.reject('short rejection');
+</code>
+</pre>
+
+</body>
+</html>

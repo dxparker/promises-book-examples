@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-13. Build sequential chain using recursion</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Replaces sequence in previous example with a recursive implementation
+function sequence(array, callback) {
+	function chain(array, index) {
+		if (index == array.length) return Promise.resolve();
+		return Promise.resolve(callback(array[index])).then(function () {
+			return chain(array, index + 1);
+		});
+	}
+	return chain(array, 0);
+}
+
+// Repeated from previous example
+var products = ['sku-1', 'sku-2', 'sku-3'];
+
+sequence(products, function (sku) {
+	return getInfo(sku).then(function (info) {
+		console.log(info)
+	});
+}).catch(function (reason) {
+	console.log(reason);
+});
+
+function getInfo(sku) {
+	console.log('Requested info for ' + sku);
+	return ajax(/*someurl for sku*/);
+}
+
+// Additional code so example can run
+function ajax(url) {
+	ajax.count = ajax.count || 1;
+	return Promise.resolve('Info for sku-' + ajax.count++);
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-13. Build sequential chain using recursion</h1>
+
+<pre>
+<code class="language-javascript">
+// Replaces sequence in previous example with a recursive implementation
+function sequence(array, callback) {
+	function chain(array, index) {
+		if (index == array.length) return Promise.resolve();
+		return Promise.resolve(callback(array[index])).then(function () {
+			return chain(array, index + 1);
+		});
+	}
+	return chain(array, 0);
+}
+
+// Console output is identical to Example 3-12
+// Requested info for sku-1
+// Info for sku-1
+// Requested info for sku-2
+// Info for sku-2
+// Requested info for sku-3
+// Info for sku-3
+</code>
+</pre>
+
+</body>
+</html>

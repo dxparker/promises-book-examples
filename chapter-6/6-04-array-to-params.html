@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-4. Array destructuring with function parameters</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Without destructuring
+getAccountStatus().then(function (status) {
+	var enabled = status[0];
+	var lastLogin = status[1];
+	// ...
+});
+
+// Using destructuring
+getAccountStatus().then(function ([enabled, lastLogin]) {
+	// ... Use enabled and lastLogin directly
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-4. Array destructuring with function parameters</h1>
+
+<pre>
+<code class="language-javascript">
+// Without destructuring
+getAccountStatus().then(function (status) {
+	var enabled = status[0];
+	var lastLogin = status[1];
+	// ...
+});
+
+// Using destructuring
+getAccountStatus().then(function ([enabled, lastLogin]) {
+	// ... Use enabled and lastLogin directly
+});
+</code>
+</pre>
+
+</body>
+</html>

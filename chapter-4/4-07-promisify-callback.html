@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-7. Using promisify to wrap a node-style function</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+function loadImageNodeStyle(url, callback) {
+	var image = new Image();
+	image.src = url;
+	image.onload = function () {
+		callback(null, image);
+	};
+	image.onerror = function (error) {
+		callback(error);
+	};
+}
+
+var Bluebird = Promise.noConflict();
+var loadImageWrapper = Bluebird.promisify(loadImageNodeStyle);
+var promise = loadImageWrapper('computer_problems.png');
+
+promise.then(function (image) {
+	console.log('Image loaded');
+}).catch(function (error) {
+	console.log('Unable to load image');
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-7. Using promisify to wrap a node-style function</h1>
+
+<pre>
+<code class="language-javascript">
+var loadImageWrapper = Bluebird.promisify(loadImageNodeStyle);
+var promise = loadImageWrapper('computer_problems.png');
+
+promise.then(function (image) {
+	console.log('Image loaded');
+}).catch(function (error) {
+	console.log('Unable to load image');
+});
+</code>
+</pre>
+
+</body>
+</html>

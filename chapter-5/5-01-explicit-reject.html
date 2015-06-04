@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-1. Explicitly rejecting a promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var rejectedPromise = new Promise(function (resolve, reject) {
+	reject(new Error('Arghhhh!')); // Explicit rejection
+});
+
+rejectedPromise.catch(function (err) {
+	console.log('Rejected');
+	console.log(err);
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-1. Explicitly rejecting a promise</h1>
+
+<pre>
+<code class="language-javascript">
+var rejectedPromise = new Promise(function (resolve, reject) {
+	reject(new Error('Arghhhh!')); // Explicit rejection
+});
+
+rejectedPromise.catch(function (err) {
+	console.log('Rejected');
+	console.log(err);
+});
+
+// Console output:
+// Rejected
+// [Error object] { message: 'Arghhhh!' ... }
+</code>
+</pre>
+
+</body>
+</html>

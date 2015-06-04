@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-11. Sample call stack</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function echo(text) {
+	console.log(text);
+	throw Error('oops');
+	// Example of call stack for error when triggered by a mouse click:
+	// echo (line:3)
+	// showRandomNumber (line:12)
+	// handleClick (line:16)
+}
+
+function showRandomNumber() {
+	echo(Math.random());
+}
+
+document.addEventListener('click', function handleClick() {
+	showRandomNumber();
+});
+
+document.addEventListener('keypress', function handleKeypress() {
+	showRandomNumber();
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-11. Sample call stack</h1>
+
+<pre>
+<code class="language-javascript">
+function echo(text) {
+	console.log(text);
+	throw Error('oops');
+	// Example of call stack for error when triggered by a mouse click:
+	// echo (line:3)
+	// showRandomNumber (line:12)
+	// handleClick (line:16)
+}
+
+function showRandomNumber() {
+	echo(Math.random());
+}
+
+document.addEventListener('click', function handleClick() {
+	showRandomNumber();
+});
+
+document.addEventListener('keypress', function handleKeypress() {
+	showRandomNumber();
+});
+</code>
+</pre>
+
+</body>
+</html>

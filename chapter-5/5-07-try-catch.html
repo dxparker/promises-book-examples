@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-7. A try/catch block</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function getData() {
+	var timestamp = performance.now();
+	try {
+		// Fetch data
+		// ...
+		throw Error('Explicit error');
+	} catch (err) {
+		// Deal with any errors that arise
+		// ...
+	}
+	console.log('getData() took ' + (performance.now() - timestamp));
+}
+
+try {
+	getData();
+} catch (err) {
+	// This catch block is not executed in this example. See Example 5-08.
+	console.log('getData() calling code received error:');
+	console.log(err);
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-7. A try/catch block</h1>
+
+<pre>
+<code class="language-javascript">
+function getData() {
+	var timestamp = performance.now();
+	try {
+		// Fetch data
+		// ...
+	} catch (err) {
+		// Deal with any errors that arise
+		// ...
+	}
+	console.log('getData() took ' + (performance.now() - timestamp));
+}
+</code>
+</pre>
+
+</body>
+</html>

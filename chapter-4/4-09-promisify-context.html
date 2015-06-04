@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-9. Specifying the execution context for a wrapped function</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+var Bluebird = Promise.noConflict();
+
+var person = {
+	name: 'Marie',
+	introNodeStyle: function (callback) {
+		var err = null;
+		callback(err, 'My name is ' + this.name);
+	}
+};
+
+var wrapper = Bluebird.promisify(person.introNodeStyle);
+	wrapper().then(function (greeting) {
+	console.log('promisify without second argument: ' + greeting);
+});
+
+var wrapperWithPersonArg = Bluebird.promisify(person.introNodeStyle, person);
+	wrapperWithPersonArg().then(function (greeting) {
+	console.log('promisify with a context argument: ' + greeting);
+});
+
+var wrapperWithBind = Bluebird.promisify(person.introNodeStyle.bind(person));
+	wrapperWithBind().then(function (greeting) {
+	console.log('promisify using function.bind: ' + greeting);
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-9. Specifying the execution context for a wrapped function</h1>
+
+<pre>
+<code class="language-javascript">
+var person = {
+	name: 'Marie',
+	introNodeStyle: function (callback) {
+		var err = null;
+		callback(err, 'My name is ' + this.name);
+	}
+};
+
+var wrapper = Bluebird.promisify(person.introNodeStyle);
+	wrapper().then(function (greeting) {
+	console.log('promisify without second argument: ' + greeting);
+});
+
+var wrapperWithPersonArg = Bluebird.promisify(person.introNodeStyle, person);
+	wrapperWithPersonArg().then(function (greeting) {
+	console.log('promisify with a context argument: ' + greeting);
+});
+
+var wrapperWithBind = Bluebird.promisify(person.introNodeStyle.bind(person));
+	wrapperWithBind().then(function (greeting) {
+	console.log('promisify using function.bind: ' + greeting);
+});
+
+// Console output:
+// promisify without second argument: My name is
+// promisify with a context argument: My name is Marie
+// promisify using function.bind: My name is Marie
+</code>
+</pre>
+
+</body>
+</html>

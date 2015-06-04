@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-1. Async XHR</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Make an async HTTP request
+var async = true;
+var xhr = new XMLHttpRequest();
+xhr.open('get', 'data.json', async);
+xhr.send();
+
+// Create a three second delay (don't do this in real life)
+var timestamp = Date.now() + 3000;
+while (Date.now() < timestamp);
+
+// Now that three seconds have passed,
+// add a listener to the xhr.load and xhr.error events
+function listener() {
+	console.log('greetings from listener');
+}
+
+xhr.addEventListener('load', listener);
+xhr.addEventListener('error', listener);
+</script>
+
+</head>
+<body>
+	
+<h1>Example 1-1. Async XHR</h1>
+
+<pre>
+<code class="language-javascript">
+// Make an async HTTP request
+var async = true;
+var xhr = new XMLHttpRequest();
+xhr.open('get', 'data.json', async);
+xhr.send();
+
+// Create a three second delay (don't do this in real life)
+var timestamp = Date.now() + 3000;
+while (Date.now() &lt; timestamp);
+
+// Now that three seconds have passed,
+// add a listener to the xhr.load and xhr.error events
+function listener() {
+	console.log('greetings from listener');
+}
+
+xhr.addEventListener('load', listener);
+xhr.addEventListener('error', listener);
+</code>
+</pre>
+
+</body>
+</html>

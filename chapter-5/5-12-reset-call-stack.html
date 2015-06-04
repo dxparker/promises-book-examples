@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-12. Promise callback breaks up the call stack</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function echo(text) {
+	console.log(text);
+	throw new Error('oops');
+	// Example of call stack for error when invoked as a callback for a promise
+	// echo (line:3)
+}
+
+function showRandomNumber() {
+	// Invoking echo as a promise callback
+	var p = Promise.resolve(Math.random());
+	p.then(echo).catch(function (error) {
+		console.log(error.stack)
+	});
+}
+
+document.addEventListener('click', function handleClick() {
+	showRandomNumber();
+});
+
+document.addEventListener('keypress', function handleKeypress() {
+	showRandomNumber();
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-12. Promise callback breaks up the call stack</h1>
+
+<pre>
+<code class="language-javascript">
+function echo(text) {
+	console.log(text);
+	throw new Error('oops');
+	// Example of call stack for error when invoked as a callback for a promise
+	// echo (line:3)
+}
+
+function showRandomNumber() {
+	// Invoking echo as a promise callback
+	var p = Promise.resolve(Math.random());
+	p.then(echo).catch(function (error) {
+		console.log(error.stack)
+	});
+}
+
+document.addEventListener('click', function handleClick() {
+	showRandomNumber();
+});
+
+document.addEventListener('keypress', function handleKeypress() {
+	showRandomNumber();
+});
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-8. Converting arrays into individual arguments using promise.spread()</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+var Bluebird = Promise.noConflict();
+
+function getAccountStatus(callback) {
+	var error = null;
+	var enabled = true;
+	var lastLogin = new Date();
+	callback(error, enabled, lastLogin); // Callback has multiple values on success
+}
+
+var fulfillUsingAnArray = true;
+var wrapperFunc = Bluebird.promisify(getAccountStatus, fulfillUsingAnArray);
+
+// Without using spread
+wrapperFunc().then(function (status) {
+var enabled = status[0];
+var lastLogin = status[1];
+	// ...
+});
+
+// Using spread
+wrapperFunc().spread(function (enabled, lastLogin) {
+	// ...
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-8. Converting arrays into individual arguments using promise.spread()</h1>
+
+<pre>
+<code class="language-javascript">
+function getAccountStatus(callback) {
+	var error = null;
+	var enabled = true;
+	var lastLogin = new Date();
+	callback(error, enabled, lastLogin); // Callback has multiple values on success
+}
+
+var fulfillUsingAnArray = true;
+var wrapperFunc = Bluebird.promisify(getAccountStatus, fulfillUsingAnArray);
+
+// Without using spread
+wrapperFunc().then(function (status) {
+var enabled = status[0];
+var lastLogin = status[1];
+	// ...
+});
+
+// Using spread
+wrapperFunc().spread(function (enabled, lastLogin) {
+	// ...
+});
+</code>
+</pre>
+
+</body>
+</html>

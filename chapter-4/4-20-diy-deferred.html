@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-20. Creating a deferred object using a standard Promise constructor</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function Deferred() {
+	var me = this;
+	me.promise = new Promise(function (resolve, reject) {
+		me.resolve = resolve;
+		me.reject = reject;
+	});
+}
+
+var d = new Deferred();
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-20. Creating a deferred object using a standard Promise constructor</h1>
+
+<pre>
+<code class="language-javascript">
+function Deferred() {
+	var me = this;
+	me.promise = new Promise(function (resolve, reject) {
+		me.resolve = resolve;
+		me.reject = reject;
+	});
+}
+
+var d = new Deferred();
+</code>
+</pre>
+
+</body>
+</html>

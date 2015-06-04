@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-6. Using array.map() with an inline callback</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var accounts = ['A', 'B', 'C'];
+
+requests = accounts.map(function (account) {
+	return getBalance(account);
+});
+
+// Additional code so example can run
+function getBalance() {
+	return Promise.resolve(Math.round(Math.random() * 1000));
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-6. Using array.map() with an inline callback</h1>
+
+<p>
+	This example has been corrected from the original version by changing <code>forEach</code> to <code>map</code>.
+</p>
+
+<pre>
+<code class="language-javascript">
+requests = accounts.map(function (account) {
+	return getBalance(account);
+});
+</code>
+</pre>
+
+</body>
+</html>

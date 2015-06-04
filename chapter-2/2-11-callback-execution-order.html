@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-11. Execution order of callbacks used by promises</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var promise = new Promise(function (resolve, reject) {
+	console.log('Inside the resolver function');    // 1
+	resolve();
+});
+
+promise.then(function () {
+	console.log('Inside the onFulfilled handler');  // 3
+});
+
+console.log('This is the last line of the script'); // 2
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-11. Execution order of callbacks used by promises</h1>
+
+<pre>
+<code class="language-javascript">
+var promise = new Promise(function (resolve, reject) {
+	console.log('Inside the resolver function');    // 1
+	resolve();
+});
+
+promise.then(function () {
+	console.log('Inside the onFulfilled handler');  // 3
+});
+
+console.log('This is the last line of the script'); // 2
+
+// Console output:
+// Inside the resolver function
+// This is the last line of the script
+// Inside the onFulfilled handler
+</code>
+</pre>
+
+</body>
+</html>

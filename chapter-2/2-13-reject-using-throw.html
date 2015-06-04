@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-13. Rejecting a promise by throwing an error in the constructor callback</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+rejectWith('bad news').then(
+	function step2() {
+		console.log('This is never run');
+	}
+).catch(
+	function (error) {
+		console.log('Foiled again!');
+		console.log(error); // Error object with message: 'bad news'
+	}
+);
+
+function rejectWith(val) {
+	return new Promise(function (resolve, reject) {
+		throw Error(val);
+		resolve('Not used'); // This line is never run
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-13. Rejecting a promise by throwing an error in the constructor callback</h1>
+
+<pre>
+<code class="language-javascript">
+rejectWith('bad news').then(
+	function step2() {
+		console.log('This is never run');
+	}
+).catch(
+	function (error) {
+		console.log('Foiled again!');
+		console.log(error); // Error object with message: 'bad news'
+	}
+);
+
+function rejectWith(val) {
+	return new Promise(function (resolve, reject) {
+		throw Error(val);
+		resolve('Not used'); // This line is never run
+	});
+}
+
+// Console output:
+// Foiled again!
+// [Error object] { message: 'bad news' ... }
+</code>
+</pre>
+
+</body>
+</html>

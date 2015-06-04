@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-4. A callback being invoked asynchronously</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function repositionElement() {
+	console.log('repositioning!');
+	// ...
+}
+
+window.requestAnimationFrame(repositionElement);
+console.log('I am the last line of the script');
+</script>
+
+</head>
+<body>
+
+<h1>Example 1-4. A callback being invoked asynchronously</h1>
+
+<pre>
+<code class="language-javascript">
+function repositionElement() {
+	console.log('repositioning!');
+	// ...
+}
+
+window.requestAnimationFrame(repositionElement);
+console.log('I am the last line of the script');
+
+// Console output:
+// I am the last line of the script
+// repositioning!
+</code>
+</pre>
+
+</body>
+</html>

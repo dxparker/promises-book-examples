@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-8. Concise pipeline (repeated from earlier chapter)</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function processImage(image) {
+	// Image is always last parameter preceded by any configuration parameters
+	var customScaleToFit = scaleToFit.bind(null, 300, 450);
+	var customWatermark = watermark.bind(null, 'The Real Estate Company');
+	
+	return Promise.resolve(image)
+		.then(customScaleToFit)
+		.then(customWatermark)
+		.then(grayscale);
+}
+
+// Repeated from Example 3-17.
+// Generic image processing functions
+function scaleToFit(width, height, image) {
+	console.log('Scaling image to ' + width + ' x ' + height);
+	return image;
+}
+
+function watermark(text, image) {
+	console.log('Watermarking image with ' + text);
+	return image;
+}
+
+function grayscale(image) {
+	console.log('Converting image to grayscale');
+	return image;
+}
+
+processImage(new Image());
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-8. Concise pipeline (repeated from earlier chapter)</h1>
+
+<pre>
+<code class="language-javascript">
+function processImage(image) {
+	// Image is always last parameter preceded by any configuration parameters
+	var customScaleToFit = scaleToFit.bind(null, 300, 450);
+	var customWatermark = watermark.bind(null, 'The Real Estate Company');
+	
+	return Promise.resolve(image)
+		.then(customScaleToFit)
+		.then(customWatermark)
+		.then(grayscale);
+}
+</code>
+</pre>
+
+</body>
+</html>

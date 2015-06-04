@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-16. Passing values into the generator</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function* counter() {
+	var count = 0;
+	var increment = 1;
+	while (true) {
+		count = count + increment;
+		increment = (yield count) || increment;
+	}
+}
+
+var iterator = counter();
+console.log(iterator.next().value);   // 1
+console.log(iterator.next().value);   // 2
+console.log(iterator.next().value);   // 3
+console.log(iterator.next(10).value); // 13 <- Start counting by 10
+console.log(iterator.next().value);   // 23
+console.log(iterator.next().value);   // 33
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-16. Passing values into the generator</h1>
+
+<pre>
+<code class="language-javascript">
+function* counter() {
+	var count = 0;
+	var increment = 1;
+	while (true) {
+		count = count + increment;
+		increment = (yield count) || increment;
+	}
+}
+
+var iterator = counter();
+console.log(iterator.next().value);   // 1
+console.log(iterator.next().value);   // 2
+console.log(iterator.next().value);   // 3
+console.log(iterator.next(10).value); // 13 &lt;- Start counting by 10
+console.log(iterator.next().value);   // 23
+console.log(iterator.next().value);   // 33
+</code>
+</pre>
+
+</body>
+</html>

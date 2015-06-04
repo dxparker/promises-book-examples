@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-3. Substituting a resolved promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function showMainMenu() {
+	var p = (!user.authenticated) ? user.login() : Promise.resolve();
+		return p.then(function () {
+		// ... Code to display main menu
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-3. Substituting a resolved promise</h1>
+
+<pre>
+<code class="language-javascript">
+function showMainMenu() {
+	var p = (!user.authenticated) ? user.login() : Promise.resolve();
+		return p.then(function () {
+		// ... Code to display main menu
+	});
+}
+</code>
+</pre>
+
+</body>
+</html>

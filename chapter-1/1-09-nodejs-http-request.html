@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-9. HTTP request in Node.js</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+</head>
+<body>
+
+<h1>Example 1-9. HTTP request in Node.js</h1>
+
+<p>
+	This example has been corrected from the original version by changing 
+	the url from <code>https</code> to <code>http</code> and removing the 
+	<code>err</code> parameter in the callback. 
+</p>
+
+<pre>
+<code class="language-javascript">
+var http = require('http');
+
+http.get('http://www.google.com', function (res) {
+	console.log('got a response');
+});
+</code>
+</pre>
+
+</body>
+</html>

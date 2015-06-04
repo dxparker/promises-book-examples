@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-10. Using the iterable interface of an array</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var array = [1, 2];
+var iterator = array[Symbol.iterator]();
+
+console.log(iterator.next()); // {value: 1, done: false}
+console.log(iterator.next()); // {value: 2, done: false}
+console.log(iterator.next()); // {value: undefined, done: true}
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-10. Using the iterable interface of an array</h1>
+
+<pre>
+<code class="language-javascript">
+var array = [1, 2];
+var iterator = array[Symbol.iterator]();
+
+iterator.next(); // {value: 1, done: false}
+iterator.next(); // {value: 2, done: false}
+iterator.next(); // {value: undefined, done: true}
+</code>
+</pre>
+
+</body>
+</html>

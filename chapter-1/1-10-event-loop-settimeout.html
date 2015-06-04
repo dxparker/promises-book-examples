@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-10. Using setTimeout to demonstrate the event loop</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function marco() {
+	console.log('polo');
+}
+
+setTimeout(marco, 0); // zero delay
+
+console.log('Ready when you are');
+</script>
+
+</head>
+<body>
+
+<pre>
+<code class="language-javascript">
+function marco() {
+	console.log('polo');
+}
+
+setTimeout(marco, 0); // zero delay
+
+console.log('Ready when you are');
+
+// Console output:
+// Ready when you are
+// polo
+</code>
+</pre>
+
+</body>
+</html>

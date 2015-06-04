@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-5. Logging and rethrowing an error</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function getReportData() {
+	return db.connect().then(function (connection) {
+		return db.query(connection, 'select something');
+	}).catch(function (err) {
+		console.log('An error occurred while getting the data');
+		if (err && err.message) console.log(err.message);
+		throw err; // Must re-throw if you want the rejection to propagate further
+	});
+}
+
+var db = {
+	connect: function () {
+		return Promise.reject('Unable to establish connection');
+	},
+	query: function () {
+	}
+};
+
+getReportData().then(function (data) {
+	data.sort();
+	console.log(data);
+}).catch(function (err) {
+	console.log('Unable to show data');
+	console.log(err);
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-5. Logging and rethrowing an error</h1>
+
+<pre>
+<code class="language-javascript">
+function getReportData() {
+	return db.connect().then(function (connection) {
+		return db.query(connection, 'select something');
+	}).catch(function (err) {
+		console.log('An error occurred while getting the data');
+		if (err && err.message) console.log(err.message);
+		throw err; // Must re-throw if you want the rejection to propagate further
+	});
+}
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-1. Using callbacks</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+loadImage('shadowfacts.png',
+	function onsuccess(img) {
+		console.log('received image');
+	},
+	function onerror(e) {
+		console.log('Error occurred while loading image');
+		console.log(e);
+	}
+);
+
+function loadImage(url, success, error) {
+	var img = new Image();
+	img.src = url;
+
+	img.onload = function () {
+		success(img);
+	};
+
+	img.onerror = function (e) {
+		error(e);
+	};
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-1. Using callbacks</h1>
+
+<pre>
+<code class="language-javascript">
+loadImage('shadowfacts.png',
+	function onsuccess(img) {
+		console.log('received image');
+	},
+	function onerror(e) {
+		console.log('Error occurred while loading image');
+		console.log(e);
+	}
+);
+
+function loadImage(url, success, error) {
+	var img = new Image();
+	img.src = url;
+
+	img.onload = function () {
+		success(img);
+	};
+
+	img.onerror = function (e) {
+		error(e);
+	};
+}
+</code>
+</pre>
+
+</body>
+</html>

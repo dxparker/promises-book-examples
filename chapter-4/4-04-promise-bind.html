@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-4. Setting callback contexts using promise.bind()</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="http://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+var printer = {
+	pageSize: 'US LETTER',
+
+	connect: function () {
+		// Return a promise that is fulfilled when a connection
+		// to the printer is established
+		return Promise.resolve();
+	},
+
+	configure: function (pageSize) {
+		return this.connect().then(function () {
+			console.log('Setting page size to ' + pageSize);
+			this.pageSize = pageSize;
+		}.bind(this)); // Using bind to set the context
+	},
+
+	print: function (job) {
+		// Aliasing the outer context
+		// _this, that, and self are some other common alias names
+		var me = this;
+		
+		return this.connect().then(function () {
+			console.log('Printing job using page size ' + me.pageSize);
+		});
+	}
+};
+
+printer.shutdown = function () {
+	this.connect().bind(this).then(function() { // bluebird.bind not function.bind
+		console.log('First callback can use ' + this.paperSize);
+	}).then(function () {
+		console.log('And second callback can use ' + this.paperSize);
+	});
+};
+
+printer.shutdown();
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-4. Setting callback contexts using promise.bind()</h1>
+
+<pre>
+<code class="language-javascript">
+printer.shutdown = function () {
+	this.connect().bind(this).then(function() { // bluebird.bind not function.bind
+		console.log('First callback can use ' + this.paperSize);
+	}).then(function () {
+		console.log('And second callback can use ' + this.paperSize);
+	});
+};
+
+// Console.output:
+// First callback can use A4
+// And second callback can use A4
+</code>
+</pre>
+
+</body>
+</html>

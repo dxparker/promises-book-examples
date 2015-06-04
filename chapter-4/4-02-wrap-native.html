@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-2. Wrap a native promise with a Bluebird promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://cdn.jsdelivr.net/bluebird/2.9.27/bluebird.min.js"></script>
+<script>
+var Bluebird = Promise.noConflict(); // Restore previous reference to Promise
+var nativePromise = Promise.resolve(); // Native Promise
+var b = Bluebird.resolve(nativePromise); // Wrap native promise with Bluebird promise
+
+// Force event loop to turn
+setTimeout(function () {
+	console.log('Pending? ' + b.isPending()); // Pending? false
+	console.log('Fulfilled? ' + b.isFulfilled()); // Fulfilled? true
+	console.log('Rejected? ' + b.isRejected()); // Rejected? false
+}, 0);
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-2. Wrap a native promise with a Bluebird promise</h1>
+<p>
+	This example has been corrected from the original version by forcing the 
+	event loop to turn using <code>setTimeout</code>
+</p>
+<pre>
+<code class="language-javascript">
+var Bluebird = Promise.noConflict(); // Restore previous reference to Promise
+var nativePromise = Promise.resolve(); // Native Promise
+var b = Bluebird.resolve(nativePromise); // Wrap native promise with Bluebird promise
+
+// Force event loop to turn
+setTimeout(function () {
+	console.log('Pending? ' + b.isPending()); // Pending? false
+	console.log('Fulfilled? ' + b.isFulfilled()); // Fulfilled? true
+	console.log('Rejected? ' + b.isRejected()); // Rejected? false
+}, 0);
+</code>
+</pre>
+
+</body>
+</html>

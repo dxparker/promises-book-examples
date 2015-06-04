@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-8. The jQuery.ready function can be synchronous or asynchronous</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+jQuery(document).ready(function () {
+	// jQuery calls this function after the DOM is loaded and ready to use
+	console.log('DOM is ready');
+	setTimeout(foo, 0);
+});
+
+function foo() {
+	jQuery(document).ready(function () {
+		console.log('Ready listener inside foo');
+	});
+
+	console.log('Last line of the foo function');
+}
+
+console.log('I am the last line of the script');
+</script>
+
+</head>
+<body>
+
+<h1>Example 1-8. The jQuery.ready function can be synchronous or asynchronous</h1>
+<p>
+	This example has been corrected from the original version by changing 
+	<code>jQuery.ready(...)</code> to <code>jQuery(document).ready(...)</code>
+</p>
+
+<pre>
+<code class="language-javascript">
+jQuery(document).ready(function () {
+	// jQuery calls this function after the DOM is loaded and ready to use
+	console.log('DOM is ready');
+	setTimeout(foo, 0);
+});
+
+function foo() {
+	jQuery(document).ready(function () {
+		console.log('Ready listener inside foo');
+	});
+
+	console.log('Last line of the foo function');
+}
+
+console.log('I am the last line of the script');
+
+// Console output
+// I am the last line of the script
+// DOM is ready
+// Ready listener inside foo
+// Last line of the foo function
+</code>
+</pre>
+
+</body>
+</html>

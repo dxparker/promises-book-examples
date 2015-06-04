@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-14. Conditionally expanding a chain based on the outcome of a preceding promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function readAllChunks(readableStream) {
+	var reader = readableStream.getReader();
+	var chunks = [];
+	
+	return pump();
+	
+	function pump() {
+		return reader.read().then(function (result) {
+			if (result.done) {
+				return chunks;
+			}
+
+			chunks.push(result.value);
+			return pump();
+		});
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-14. Conditionally expanding a chain based on the outcome of a preceding promise</h1>
+
+<pre>
+<code class="language-javascript">
+function readAllChunks(readableStream) {
+	var reader = readableStream.getReader();
+	var chunks = [];
+	
+	return pump();
+	
+	function pump() {
+		return reader.read().then(function (result) {
+			if (result.done) {
+				return chunks;
+			}
+			
+			chunks.push(result.value);
+			return pump();
+		});
+	}
+}
+</code>
+</pre>
+
+</body>
+</html>

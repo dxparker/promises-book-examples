@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-3. Object destructuring with function parameters</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+// Without destructuring
+reader.read().then(function (result) {
+	// ... Use result.value and result.done
+});
+
+// Using destructuring
+reader.read().then(function ({value, done}) {
+	// ... Use done and value directly
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-3. Object destructuring with function parameters</h1>
+
+<pre>
+<code class="language-javascript">
+// Without destructuring
+reader.read().then(function (result) {
+	// ... Use result.value and result.done
+});
+
+// Using destructuring
+reader.read().then(function ({value, done}) {
+	// ... Use done and value directly
+});
+</code>
+</pre>
+
+</body>
+</html>

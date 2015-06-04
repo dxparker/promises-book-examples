@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-2. Conditional async step</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var user = {
+	authenticated: false,
+	login: function () {
+		// Returns a promise for the login request
+		// Set authenticated to true and fulfill promise when login succeeds
+	}
+};
+
+// Avoid this style of conditional async execution
+function showMainMenu() {
+	if (!user.authenticated) {
+		user.login().then(showMainMenu);
+		return;
+	}
+	// ... Code to display main menu
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-2. Conditional async step</h1>
+
+<pre>
+<code class="language-javascript">
+var user = {
+	authenticated: false,
+	login: function () {
+		// Returns a promise for the login request
+		// Set authenticated to true and fulfill promise when login succeeds
+	}
+};
+
+// Avoid this style of conditional async execution
+function showMainMenu() {
+	if (!user.authenticated) {
+		user.login().then(showMainMenu);
+		return;
+	}
+	// ... Code to display main menu
+}
+</code>
+</pre>
+
+</body>
+</html>

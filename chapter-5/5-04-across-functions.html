@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-4. Promise chains built across functions</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var db = {
+	connect: function () {
+		return Promise.resolve(/*connection object*/);
+	},
+	query: function () {
+		return Promise.resolve(['record 1', 'record 2']);
+	}
+};
+
+function getReportData() {
+	return db.connect().then(function (connection) {
+		return db.query(connection, 'select report data');
+	});
+}
+
+getReportData().then(function (data) {
+	data.sort();
+	console.log(data);
+}).catch(function (err) {
+	console.log('Unable to show data');
+	console.log(err);
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-4. Promise chains built across functions</h1>
+
+<p>
+	This example has been corrected from the original version by replacing the semicolon after the <code>connect</code> function declaration with a comma and removing the semicolon after the <code>query</code> function declaration.
+</p>
+
+<pre>
+<code class="language-javascript">
+var db = {
+	connect: function () {/*...*/},
+	query: function () {/*...*/}
+};
+
+function getReportData() {
+	return db.connect().then(function (connection) {
+		return db.query(connection, 'select report data');
+	});
+}
+
+getReportData().then(function (data) {
+	data.sort();
+	console.log(data);
+}).catch(function (err) {
+	console.log('Unable to show data');
+});
+</code>
+</pre>
+
+</body>
+</html>

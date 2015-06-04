@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-5. Caching a promise</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var user = {
+	loginPromise: null,
+
+	login: function () {
+		var me = this;
+		if (this.loginPromise == null) {
+			this.loginPromise = ajax(/*someurl*/);
+
+			// Remove cached loginPromise when a failure occurs to allow retry
+			this.loginPromise.catch(function () {
+				me.loginPromise = null;
+			});
+		}
+		return this.loginPromise;
+	}
+};
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-5. Caching a promise</h1>
+
+<pre>
+<code class="language-javascript">
+var user = {
+	loginPromise: null,
+
+	login: function () {
+		var me = this;
+		if (this.loginPromise == null) {
+			this.loginPromise = ajax(/*someurl*/);
+
+			// Remove cached loginPromise when a failure occurs to allow retry
+			this.loginPromise.catch(function () {
+				me.loginPromise = null;
+			});
+		}
+		return this.loginPromise;
+	}
+};
+</code>
+</pre>
+
+</body>
+</html>

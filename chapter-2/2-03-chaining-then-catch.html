@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 2-3. Chaining calls using then and catch</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+loadImage('security_holes.png').then(function (img) {
+	console.log('received image');
+}).catch(function (e) {
+	console.log('Error occurred while loading image');
+	console.log(e);
+});
+
+// Additional code so example can run
+function loadImage(url) {
+	return new Promise(function (resolve) {
+		resolve(new Image());
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 2-3. Chaining calls using then and catch</h1>
+
+<pre>
+<code class="language-javascript">
+loadImage('security_holes.png').then(function (img) {
+	console.log('received image');
+}).catch(function (e) {
+	console.log('Error occurred while loading image');
+	console.log(e);
+});
+</code>
+</pre>
+
+</body>
+</html>

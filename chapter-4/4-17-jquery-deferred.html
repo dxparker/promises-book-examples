@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-17. Simple deferred object in jQuery</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function loadImage(url) {
+	var deferred = jQuery.Deferred();
+	var img = new Image();
+	img.src = url;
+
+	img.onload = function () {
+		deferred.resolve(img);
+	};
+	
+	img.onerror = function (e) {
+		deferred.reject(e);
+	};
+
+	return deferred;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-17. Simple deferred object in jQuery</h1>
+
+<pre>
+<code class="language-javascript">
+function loadImage(url) {
+	var deferred = jQuery.Deferred();
+	var img = new Image();
+	img.src = url;
+
+	img.onload = function () {
+		deferred.resolve(img);
+	};
+	
+	img.onerror = function (e) {
+		deferred.reject(e);
+	};
+
+	return deferred;
+}
+</code>
+</pre>
+
+</body>
+</html>

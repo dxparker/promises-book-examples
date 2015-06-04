@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 3-15. Manage response time using Promise.race()</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function getData() {
+	var timeAllowed = 500; // milliseconds
+	var deadline = Date.now() + timeAllowed;
+
+	var freshData = ajax(/*someurl*/);
+	
+	var cachedData = fetchFromCache().then(function (data) {
+		return new Promise(function (resolve) {
+			var timeRemaining = Math.max(deadline - Date.now(), 0);
+			setTimeout(function () {
+				resolve(data);
+			}, timeRemaining);
+		});
+	});
+
+	var failure = new Promise(function (resolve, reject) {
+		setTimeout(function () {
+			reject(new Error('Unable to fetch data in allotted time'));
+		}, timeAllowed);
+	});
+	return Promise.race([freshData, cachedData, failure]);
+}
+
+// Additional code so example can run
+getData().then(function (data) {
+	console.log('Received data:');
+	console.log(data);
+}).catch(function (err) {
+	console.log('Unable to get data:');
+	console.log(err);
+});
+
+// Uncomment call to resolve in either function below to see alternate scenarios
+function ajax(url) {
+	return new Promise(function (resolve, reject) {
+		// resolve('data from ajax');
+	});
+}
+
+function fetchFromCache() {
+	return new Promise(function (resolve, reject) {
+		// resolve('data from cache');
+	});
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 3-15. Manage response time using Promise.race()</h1>
+
+<pre>
+<code class="language-javascript">
+function getData() {
+	var timeAllowed = 500; // milliseconds
+	var deadline = Date.now() + timeAllowed;
+
+	var freshData = ajax(/*someurl*/);
+	
+	var cachedData = fetchFromCache().then(function (data) {
+		return new Promise(function (resolve) {
+			var timeRemaining = Math.max(deadline - Date.now(), 0);
+			setTimeout(function () {
+				resolve(data);
+			}, timeRemaining);
+		});
+	});
+
+	var failure = new Promise(function (resolve, reject) {
+		setTimeout(function () {
+			reject(new Error('Unable to fetch data in allotted time'));
+		}, timeAllowed);
+	});
+	return Promise.race([freshData, cachedData, failure]);
+}
+</code>
+</pre>
+
+</body>
+</html>

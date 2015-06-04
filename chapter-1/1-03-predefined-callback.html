@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 1-3. Passing a callback as a predefined function</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
+
+function callback(city) {
+	console.log(city);
+}
+
+cities.forEach(callback);
+</script>
+
+</head>
+<body>
+
+<h1>Example 1-3. Passing a callback as a predefined function</h1>
+
+<pre>
+<code class="language-javascript">
+var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
+
+function callback(city) {
+	console.log(city);
+}
+
+cities.forEach(callback);
+
+// Same output as Example 1-2:
+// Tokyo
+// London
+// Boston
+// Berlin
+// Chicago
+// New York
+</code>
+</pre>
+
+</body>
+</html>

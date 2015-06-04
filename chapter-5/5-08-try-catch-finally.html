@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 5-8. A traditional try/catch/finally block</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function getData() {
+	var timestamp = performance.now();
+	try {
+		// Fetch data
+		// ...
+		throw Error('Explicit error');
+	} catch (err) {
+		// Bubble error up to code that called this function
+		throw err;
+	} finally {
+		// Log time taken regardless of whether the preceding code throws an error
+		console.log('getData() took ' + (performance.now() - timestamp));
+	}
+}
+
+try {
+	getData();
+} catch (err) {
+	console.log('getData() calling code received error:');
+	console.log(err);
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 5-8. A traditional try/catch/finally block</h1>
+
+<pre>
+<code class="language-javascript">
+function getData() {
+	var timestamp = performance.now();
+	try {
+		// Fetch data
+		// ...
+	} catch (err) {
+		// Bubble error up to code that called this function
+		throw err;
+	} finally {
+		// Log time taken regardless of whether the preceding code throws an error
+		console.log('getData() took ' + (performance.now() - timestamp));
+	}
+}
+
+// Console output:
+// getData() took 0.030000000158906914
+</code>
+</pre>
+
+</body>
+</html>

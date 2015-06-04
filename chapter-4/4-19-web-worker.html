@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-19. Managing web worker results with deferred objects</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+var worker = new Worker('task.js');
+var deferreds = {};
+var counter = 0;
+
+worker.onmessage = function (msg) {
+	var d = deferreds[msg.data.id];
+	d.resolve(msg.data.result);
+};
+
+function background(task) {
+	var id = counter++;
+	var deferred = jQuery.Deferred();
+	deferreds[id] = deferred; // Store deferred for later resolution
+	console.log('Sending task to worker: ' + task);
+	worker.postMessage({
+		id: id,
+		task: task
+	});
+	return deferred.promise(); // Only expose promise to calling code
+}
+
+background('Solve for x').then(function (result) {
+	console.log('The outcome is... ' + result);
+}).fail(function(err) {
+	console.log('Unable to complete task');
+	console.log(err);
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-19. Managing web worker results with deferred objects</h1>
+
+<p>
+This example has been corrected from the original version by changing the function 
+declaration in task.js from <code>function onmessage(event) {...}</code> to 
+<code>onmessage = function(event) {...}</code> and registering a listener in the main 
+script using <code>worker.onmessage = function ...</code> instead of <code>worker.addEventListener(...)</code>.
+</p>
+
+<pre>
+<code class="language-javascript">
+// Contents of task.js
+onmessage = function(event) {
+	postMessage({
+		status: 'completed',
+		id: event.data.id,
+		result: 'some calculated result'
+	});
+}
+
+// Contents of main script
+var worker = new Worker('task.js');
+var deferreds = {};
+var counter = 0;
+
+worker.onmessage = function (msg) {
+	var d = deferreds[msg.data.id];
+	d.resolve(msg.data.result);
+};
+
+function background(task) {
+	var id = counter++;
+	var deferred = jQuery.Deferred();
+	deferreds[id] = deferred; // Store deferred for later resolution
+	console.log('Sending task to worker: ' + task);
+	worker.postMessage({
+		id: id,
+		task: task
+	});
+	return deferred.promise(); // Only expose promise to calling code
+}
+
+background('Solve for x').then(function (result) {
+	console.log('The outcome is... ' + result);
+}).fail(function(err) {
+	console.log('Unable to complete task');
+	console.log(err);
+});
+
+// Console output:
+// Sending task to worker: Solve for x
+// The outcome is... some calculated result
+</code>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 6-23. Using a promise with code that looks synchronous (repeated from earlier)</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+async(function* () {
+	try {
+		var img = yield loadImage('thesis_defense.png');
+		console.log('received image');
+	} catch (err) {
+		console.log('caught in async routine');
+		console.log(err);
+	}
+})();
+
+// Additional code so example can run
+function async(generator) {
+	return function () {
+		var iterator = generator.apply(this, arguments);
+
+		function handle(result) {
+			if (result.done) return Promise.resolve(result.value);
+			return Promise.resolve(result.value).then(function (res) {
+				return handle(iterator.next(res));
+			}, function (err) {
+				return handle(iterator.throw(err));
+			});
+		}
+
+		try {
+			return handle(iterator.next());
+		} catch (ex) {
+			return Promise.reject(ex);
+		}
+	};
+}
+
+function loadImage(url) {
+	return Promise.resolve(new Image());
+}
+</script>
+
+</head>
+<body>
+
+<h1>Example 6-23. Using a promise with code that looks synchronous (repeated from earlier)</h1>
+
+<pre>
+<code class="language-javascript">
+async(function* () {
+	try {
+		var img = yield loadImage('thesis_defense.png');
+		console.log('received image');
+	} catch (err) {
+		console.log('caught in async routine');
+		console.log(err);
+	}
+})();
+</code>
+</pre>
+
+</body>
+</html>

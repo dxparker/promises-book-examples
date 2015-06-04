@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example 4-6. Node-style callback</title>
+<link href="../prism.css" rel="stylesheet">
+<script src="../prism.js"></script>
+
+<script>
+function loadImageNodeStyle(url, callback) {
+	var image = new Image();
+	image.src = url;
+	image.onload = function () {
+		callback(null, image);
+	};
+	image.onerror = function (error) {
+		callback(error);
+	};
+}
+
+loadImageNodeStyle('labyrinth_puzzle.png', function (err, image) {
+	if (err) {
+		console.log('Unable to load image');
+		return;
+	}
+	console.log('Image loaded');
+});
+</script>
+
+</head>
+<body>
+
+<h1>Example 4-6. Node-style callback</h1>
+
+<pre>
+<code class="language-javascript">
+function loadImageNodeStyle(url, callback) {
+	var image = new Image();
+	image.src = url;
+	image.onload = function () {
+		callback(null, image);
+	};
+	image.onerror = function (error) {
+		callback(error);
+	};
+}
+
+loadImageNodeStyle('labyrinth_puzzle.png', function (err, image) {
+	if (err) {
+		console.log('Unable to load image');
+		return;
+	}
+	console.log('Image loaded');
+});
+</code>
+</pre>
+
+</body>
+</html>
