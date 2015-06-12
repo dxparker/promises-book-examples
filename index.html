@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Examples</title>
+	<style>
+		ol {
+			list-style-type: none;
+		}
+
+		#chapters > li {
+			font-size: 1.1rem;
+			margin-top: 1.2rem;
+		}
+
+		#chapters > li > ol > li {
+			font-size: 1rem;
+			margin-top: .25rem;
+		}
+	</style>
+</head>
+<body>
+
+<ol id="chapters">
+	<li>Chapter 1. Asynchronous JavaScript
+		<ol>
+			<li>1.1. <a href="chapter-1/1-01-async-xhr.html">Async XHR (3 second load time)</a></li>
+			<li>1.2. <a href="chapter-1/1-02-example-callback.html">Example callback</a></li>
+			<li>1.3. <a href="chapter-1/1-03-predefined-callback.html">Passing a callback as a predefined function</a></li>
+			<li>1.4. <a href="chapter-1/1-04-async-callback.html">A callback being invoked asynchronously</a></li>
+			<li>1.5. <a href="chapter-1/1-05-nodejs-sync-fileio.html">Using synchronous code to write and read a file in Node.js</a></li>
+			<li>1.6. <a href="chapter-1/1-06-nodejs-async-fileio.html">Using asynchronous code to write and read a file in Node.js</a></li>
+			<li>1.7. <a href="chapter-1/1-07-nodejs-naive-async-fileio.html">Naive asynchronous code</a></li>
+			<li>1.8. <a href="chapter-1/1-08-jquery-ready.html">The jQuery.ready function can be synchronous or asynchronous</a></li>
+			<li>1.9. <a href="chapter-1/1-09-nodejs-http-request.html">HTTP request in Node.js</a></li>
+			<li>1.10. <a href="chapter-1/1-10-event-loop-settimeout.html">Using setTimeout to demonstrate the event loop</a></li>
+			<li>1.11. <a href="chapter-1/1-11-async-xhr.html">Async XHR (3 second load time repeated from earlier)</a></li>
+			<li>1.12. <a href="chapter-1/1-12-race-condition.html">Race condition</a></li>
+		</ol>
+	</li>
+
+	<li>Chapter 2. Introducing Promises
+		<ol>
+			<li>2.1. <a href="chapter-2/2-01-using-callbacks.html">Using callbacks</a></li>
+			<li>2.2. <a href="chapter-2/2-02-then-catch.html">Promise then and catch</a></li>
+			<li>2.3. <a href="chapter-2/2-03-chaining-then-catch.html">Chaining calls using then and catch</a></li>
+			<li>2.4. <a href="chapter-2/2-04-create-and-resolve.html">Creating and resolving a promise</a></li>
+			<li>2.5. <a href="chapter-2/2-05-multiple-consumers.html">One promise with multiple consumers</a></li>
+			<li>2.6. <a href="chapter-2/2-06-immutable-states.html">The state of a promise never changes after it is fulfilled or rejected</a></li>
+			<li>2.7. <a href="chapter-2/2-07-convenience-resolve-reject.html">Convenience functions for resolve and reject</a></li>
+			<li>2.8. <a href="chapter-2/2-08-then-returns-new-promise.html">Calls to then always return a new promise</a></li>
+			<li>2.9. <a href="chapter-2/2-09-sequence-steps-with-then.html">Using then to sequence multiple steps</a></li>
+			<li>2.10. <a href="chapter-2/2-10-pass-value-to-next-step.html">Passing values in a sequence of steps</a></li>
+			<li>2.11. <a href="chapter-2/2-11-callback-execution-order.html">Execution order of callbacks used by promises</a></li>
+			<li>2.12. <a href="chapter-2/2-12-end-chain-with-catch.html">Using a rejection handler at the end of a chain</a></li>
+			<li>2.13. <a href="chapter-2/2-13-reject-using-throw.html">Rejecting a promise by throwing an error in the constructor callback</a></li>
+		</ol>
+	</li>
+
+	<li>Chapter 3. Working with Standard Promises
+		<ol>
+			<li>3.1. <a href="chapter-3/3-01-async-ripple-effect.html">The async ripple effect</a></li>
+			<li>3.2. <a href="chapter-3/3-02-conditional-step.html">Conditional async step</a></li>
+			<li>3.3. <a href="chapter-3/3-03-substitute-promise.html">Substituting a resolved promise</a></li>
+			<li>3.4. <a href="chapter-3/3-04-encapsulate-condition.html">Encapsulating conditional logic with a promise</a></li>
+			<li>3.5. <a href="chapter-3/3-05-cached-promise.html">Caching a promise</a></li>
+			<li>3.6. <a href="chapter-3/3-06-run-parallel-tasks.html">Running asynchronous tasks in parallel</a></li>
+			<li>3.7. <a href="chapter-3/3-07-aggregate-tasks.html">Consolidating the outcomes of parallel tasks with Promise.all()</a></li>
+			<li>3.8. <a href="chapter-3/3-08-aggregate-all-outcomes.html">Running code after multiple operations have finished, regardless of their</a></li>
+			<li>3.9. <a href="chapter-3/3-09-parallel-with-loop.html">Running tasks in parallel using a loop</a></li>
+			<li>3.10. <a href="chapter-3/3-10-array-reduce.html">Overview of array.reduce()</a></li>
+			<li>3.11. <a href="chapter-3/3-11-simple-reduce.html">Simple array.reduce() to sum numbers</a></li>
+			<li>3.12. <a href="chapter-3/3-12-sequential-with-loop.html">Build a sequential chain using a loop</a></li>
+			<li>3.13. <a href="chapter-3/3-13-sequential-with-recursion.html">Build sequential chain using recursion</a></li>
+			<li>3.14. <a href="chapter-3/3-14-conditional-chain.html">Conditionally expanding a chain based on the outcome of a preceding promise</a></li>
+			<li>3.15. <a href="chapter-3/3-15-managing-latency.html">Manage response time using Promise.race()</a></li>
+			<li>3.16. <a href="chapter-3/3-16-verbose-pipeline.html">Verbose pipeline</a></li>
+			<li>3.17. <a href="chapter-3/3-17-concise-pipeline.html">Concise pipeline</a></li>
+		</ol>
+	</li>
+
+	<li>Chapter 4. Using Libraries and Frameworks
+		<ol>
+			<li>4.1. <a href="chapter-4/4-01-wrap-thenable.html">Wrapping a thenable for interoperability</a></li>
+			<li>4.2. <a href="chapter-4/4-02-wrap-native.html">Wrap a native promise with a Bluebird promise</a></li>
+			<li>4.3. <a href="chapter-4/4-03-enclosing-scope.html">Using the enclosing scope through function.bind() or aliasing</a></li>
+			<li>4.4. <a href="chapter-4/4-04-promise-bind.html">Setting callback contexts using promise.bind()</a></li>
+			<li>4.5. <a href="chapter-4/4-05-hide-bound-context.html">Hiding the bound context from calling code</a></li>
+			<li>4.6. <a href="chapter-4/4-06-node-callback.html">Node-style callback</a></li>
+			<li>4.7. <a href="chapter-4/4-07-promisify-callback.html">Using promisify to wrap a node-style function</a></li>
+			<li>4.8. <a href="chapter-4/4-08-promise-spread.html">Converting arrays into individual arguments using promise.spread()</a></li>
+			<li>4.9. <a href="chapter-4/4-09-promisify-context.html">Specifying the execution context for a wrapped function</a></li>
+			<li>4.10. <a href="chapter-4/4-10-filter-reduce.html">Using a promise-enabled filter and reduce</a></li>
+			<li>4.11. <a href="chapter-4/4-11-eager-invocation.html">Eager invocation of aggregate functions</a></li>
+			<li>4.12. <a href="chapter-4/4-12-using-outer-scope.html">Exposing a fulfillment value using the enclosing scope</a></li>
+			<li>4.13. <a href="chapter-4/4-13-promise-return.html">Passing on a value using promise.return()</a></li>
+			<li>4.14. <a href="chapter-4/4-14-promise-tap-passthrough.html">Passing on a value using promise.tap()</a></li>
+			<li>4.15. <a href="chapter-4/4-15-promise-tap-augment.html">Supplementing a chain with promise.tap()</a></li>
+			<li>4.16. <a href="chapter-4/4-16-promise-all-passthrough.html">Passing in multiple values with Promise.all()</a></li>
+			<li>4.17. <a href="chapter-4/4-17-jquery-deferred.html">Simple deferred object in jQuery</a></li>
+			<li>4.18. <a href="chapter-4/4-18-deferred-sync-errors.html">Deferred throws synchronous errors</a></li>
+			<li>4.19. <a href="chapter-4/4-19-web-worker.html">Managing web worker results with deferred objects</a></li>
+			<li>4.20. <a href="chapter-4/4-20-diy-deferred.html">Creating a deferred object using a standard Promise constructor</a></li>
+		</ol>
+	</li>
+
+	<li>Chapter 5. Error Handling
+		<ol>
+			<li>5.1. <a href="chapter-5/5-01-explicit-reject.html">Explicitly rejecting a promise</a></li>
+			<li>5.2. <a href="chapter-5/5-02-unhandled-error.html">Unhandled error rejects a promise</a></li>
+			<li>5.3. <a href="chapter-5/5-03-avoid-sync-error.html">Functions that return promises should not throw errors</a></li>
+			<li>5.4. <a href="chapter-5/5-04-across-functions.html">Promise chains built across functions</a></li>
+			<li>5.5. <a href="chapter-5/5-05-log-and-rethrow.html">Logging and rethrowing an error</a></li>
+			<li>5.6. <a href="chapter-5/5-06-unhandled-rejection.html">Bluebird reporting an unhandled rejection</a></li>
+			<li>5.7. <a href="chapter-5/5-07-try-catch.html">A try/catch block</a></li>
+			<li>5.8. <a href="chapter-5/5-08-try-catch-finally.html">A traditional try/catch/finally block</a></li>
+			<li>5.9. <a href="chapter-5/5-09-async-finally.html">Use catch/then to mimic catch/finally</a></li>
+			<li>5.10. <a href="chapter-5/5-10-bluebird-finally.html">Bluebird's promise.finally()</a></li>
+			<li>5.11. <a href="chapter-5/5-11-call-stack.html">Sample call stack</a></li>
+			<li>5.12. <a href="chapter-5/5-12-reset-call-stack.html">Promise callback breaks up the call stack</a></li>
+		</ol>
+	</li>
+
+	<li>Chapter 6. Combining ECMAScript 6 Features with Promises
+		<ol>
+			<li>6.1. <a href="chapter-6/6-01-destructure-array.html">Array destructuring</a></li>
+			<li>6.2. <a href="chapter-6/6-02-destructure-object.html">Object destructuring</a></li>
+			<li>6.3. <a href="chapter-6/6-03-object-to-params.html">Object destructuring with function parameters</a></li>
+			<li>6.4. <a href="chapter-6/6-04-array-to-params.html">Array destructuring with function parameters</a></li>
+			<li>6.5. <a href="chapter-6/6-05-destructure-promise-all.html">Destructuring the fulfillment value from Promise.all()</a></li>
+			<li>6.6. <a href="chapter-6/6-06-inline-map.html">Using array.map() with an inline callback</a></li>
+			<li>6.7. <a href="chapter-6/6-07-arrow-function.html">Using array.map() with an arrow function</a></li>
+			<li>6.8. <a href="chapter-6/6-08-concise-pipeline.html">Concise pipeline (repeated from earlier chapter)</a></li>
+			<li>6.9. <a href="chapter-6/6-09-arrow-pipeline.html">Concise pipeline with arrow functions</a></li>
+			<li>6.10. <a href="chapter-6/6-10-iterator.html">Using the iterable interface of an array</a></li>
+			<li>6.11. <a href="chapter-6/6-11-async-image-load.html">Managing asynchronous image loading using a promise</a></li>
+			<li>6.12. <a href="chapter-6/6-12-sync-image-load.html">Hypothetical use of loadImage as a synchronous function</a></li>
+			<li>6.13. <a href="chapter-6/6-13-generator-image-load.html">Using a promise with code that looks synchronous</a></li>
+			<li>6.14. <a href="chapter-6/6-14-series-function.html">Computing a series of values without using a generator</a></li>
+			<li>6.15. <a href="chapter-6/6-15-series-generator.html">Computing a series of values using a generator</a></li>
+			<li>6.16. <a href="chapter-6/6-16-value-into-generator.html">Passing values into the generator</a></li>
+			<li>6.17. <a href="chapter-6/6-17-configure-iterator.html">Configuring an iterator with an initial parameter</a></li>
+			<li>6.18. <a href="chapter-6/6-18-ignore-param.html">The parameter in the first call to iterator.next() is always ignored</a></li>
+			<li>6.19. <a href="chapter-6/6-19-finite-iteration.html">Finite iterations</a></li>
+			<li>6.20. <a href="chapter-6/6-20-loop-iterations.html">Looping through iterations</a></li>
+			<li>6.21. <a href="chapter-6/6-21-for-of-loop.html">Using an implicit iterator created by for&hellip;of</a></li>
+			<li>6.22. <a href="chapter-6/6-22-iterator-throw.html">Throwing errors with the iterator</a></li>
+			<li>6.23. <a href="chapter-6/6-23-generator-image-load.html">Using a promise with code that looks synchronous (repeated from earlier)</a></li>
+			<li>6.24. <a href="chapter-6/6-24-async-wrapper.html">Sample async wrapper</a></li>
+			<li>6.25. <a href="chapter-6/6-25-promise-catch.html">Replacing try/catch with promise.catch()</a></li>
+			<li>6.26. <a href="chapter-6/6-26-es7-async-await.html">Using async and await as proposed in ES7</a></li>
+		</ol>
+	</li>
+</ol>
+
+</body>
+</html>
