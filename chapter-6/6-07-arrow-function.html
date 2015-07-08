@@ -6,7 +6,14 @@
 <script src="../prism.js"></script>
 
 <script>
-requests = accounts.map(account => getBalance(account));
+var accounts = ['A', 'B', 'C'];
+
+var requests = accounts.map(account => ajax('/balances/' + account));
+
+// Additional code so example can run (assuming arrow functions are supported)
+function ajax() {
+	return Promise.resolve(Math.round(Math.random() * 1000));
+}
 </script>
 
 </head>
@@ -20,7 +27,7 @@ requests = accounts.map(account => getBalance(account));
 
 <pre>
 <code class="language-javascript">
-requests = accounts.map(account => getBalance(account));
+var requests = accounts.map(account => ajax('/balances/' + account));
 </code>
 </pre>
 

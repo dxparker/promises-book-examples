@@ -65,7 +65,7 @@ printer.shutdown = function () {
 		//...
 	}).then(function () {
 		//...
-	}).bind(); // mask the previous binding
+	}).bind(null); // mask the previous binding
 };
 
 printer.shutdown().then(function () {
