@@ -19,7 +19,9 @@ var fs = require('fs');
 var timestamp = new Date().toString();
 var contents;
 
-fs.writeFile('date.txt', timestamp);
+fs.writeFile('date.txt', timestamp, function (err) {
+	if (err) throw err;
+});
 
 fs.readFile('date.txt', function (err, data) {
 	if (err) throw err;
